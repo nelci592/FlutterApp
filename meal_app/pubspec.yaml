@@ -1,4 +1,4 @@
-name: progress_app
+name: meal_app
 description: A new Flutter project.
 
 # The following defines the version and build number for your application.
@@ -51,7 +51,7 @@ flutter:
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
 
-fonts:
+  fonts:
     - family: Raleway
       fonts:
         - asset: assets/fonts/Raleway-Regular.ttf
