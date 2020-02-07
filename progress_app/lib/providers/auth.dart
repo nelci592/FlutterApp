@@ -10,7 +10,7 @@ class Auth with ChangeNotifier {
 
   Future<void> _authenticate(
       String email, String password, String urlSegment) async {
-    final url = "";
+    final url =
     final response = await http.post(
       url,
       body: json.encode(
