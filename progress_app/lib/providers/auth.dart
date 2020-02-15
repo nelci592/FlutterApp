@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
+import '../models/http_exception.dart';
+
 
 class Auth with ChangeNotifier {
   String _token;
@@ -10,7 +12,8 @@ class Auth with ChangeNotifier {
 
   Future<void> _authenticate(
       String email, String password, String urlSegment) async {
-    final url =
+    final url = ;
+    try{
     final response = await http.post(
       url,
       body: json.encode(
@@ -21,7 +24,13 @@ class Auth with ChangeNotifier {
         },
       ),
     );
-    print(json.decode(response.body));
+	      final responseData = json.decode(response.body);		
+      if (responseData['error'] != null) {		
+        throw HttpException(responseData['error']['message']);		
+      }		
+    } catch (error) {		
+      throw error;		
+    }
   }
 
   Future<void> signup(String email, String password) async {
