@@ -21,20 +21,22 @@ class AuthScreen extends StatelessWidget {
       body: Stack(
         children: <Widget>[
           Container(
-            child: Container(
+           // child: Container(
               height: deviceSize.height,
               width: deviceSize.width,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Container(        
-                    child: AuthCard(),
-                  ),
-                ],
+              child: SingleChildScrollView(
+                              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Container(        
+                      child: AuthCard(),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
+       //   ),
         ],
       ),
     );
