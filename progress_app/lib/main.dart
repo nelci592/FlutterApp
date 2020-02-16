@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import './providers/auth.dart';
 import './screens/auth_screen.dart';
 import './screens/overview_screen.dart';
+import './screens/success_sharing_screen.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -21,10 +23,11 @@ class MyApp extends StatelessWidget {
               theme: ThemeData(
                 fontFamily: 'Segoe',
               ),
-              home: auth.isAuth ? OverviewScreen() : AuthScreen(),
-              routes: {
-                OverviewScreen.routeName: (ctx) => OverviewScreen(),
-              },
+              home: SuccessSharing(),
+              //home: auth.isAuth ? OverviewScreen() : AuthScreen(),
+              // routes: {
+              //   OverviewScreen.routeName: (ctx) => OverviewScreen(),
+              // },
             ),
       ),
     );
