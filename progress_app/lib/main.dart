@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
                 fontFamily: 'Segoe',
               ),
               home: SuccessSharing(),
-              //home: auth.isAuth ? OverviewScreen() : AuthScreen(),
+              // home: auth.isAuth ? OverviewScreen() : AuthScreen(),
               // routes: {
               //   OverviewScreen.routeName: (ctx) => OverviewScreen(),
               // },
