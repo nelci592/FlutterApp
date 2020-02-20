@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-
-class SuccessSharing extends StatelessWidget {
+class SuccessBackToWork extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
-    final String successImage = "images/pictures/09_confirmation_star.svg";
-    final Widget svg = SvgPicture.asset(
-      successImage,
-    );
-    //final String successImage1 = "../../assets/pictures/09_confirmation_star.svg";
     return Container(
       color: Colors.white,
       height: deviceSize.height,
@@ -56,34 +50,34 @@ class SuccessSharing extends StatelessWidget {
                       ),
                       shape: BoxShape.circle,
                       color: Colors.lightBlue),
-                  child: 
-                   svg
                 ),
               ),
             ],
           ),
-          //09_confirmation_star.svg
+          
           // Padding(
           //   padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
           Container(
-            child: Text("You are a star!",
+            child: Text("Back to work confirmed",
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   color: Color.fromRGBO(50, 50, 50, 1),
                   fontSize: 30,
                   fontFamily: "Segoe",
-                  decoration: TextDecoration.none,
+                   decoration: TextDecoration.none, 
                 )),
           ),
-          Text("Now your collegues can use your parking spot.",
+          Text("A big THANK YOU for sharing your parking spot.",
               textAlign: TextAlign.left,
               style: TextStyle(
-                  color: Color.fromRGBO(50, 50, 50, 1),
-                  fontSize: 18,
-                  fontFamily: "Segoe",
-                  decoration: TextDecoration.none)),
+                color: Color.fromRGBO(50, 50, 50, 1),
+                fontSize: 18,
+                fontFamily: "Segoe",
+                 decoration: TextDecoration.none
+              )),
         ],
       ),
     );
   }
 }
+

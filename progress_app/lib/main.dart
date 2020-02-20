@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import './providers/auth.dart';
 import './screens/auth_screen.dart';
 import './screens/overview_screen.dart';
+import './screens/success_back_to_work.dart';
 import './screens/success_sharing_screen.dart';
 
 void main() => runApp(MyApp());
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
               theme: ThemeData(
                 fontFamily: 'Segoe',
               ),
+             // home: SuccessBackToWork(),
               home: SuccessSharing(),
               // home: auth.isAuth ? OverviewScreen() : AuthScreen(),
               // routes: {
