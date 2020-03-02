@@ -24,7 +24,10 @@ class MyApp extends StatelessWidget {
               title: 'Progress App',
               theme: ThemeData(
                 fontFamily: 'Segoe',
-              ),
+                backgroundColor: Colors.green,
+                primaryColor: Colors.green,
+                buttonColor: Colors.green,
+                              ),
               home: NotifyAbsence(),
            //   home: OverviewScreen(),
            //   home: SuccessBackToWork(),
