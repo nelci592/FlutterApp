@@ -26,7 +26,13 @@ class MyApp extends StatelessWidget {
                 fontFamily: 'Segoe',
                 backgroundColor: Colors.green,
                 primaryColor: Colors.green,
-                buttonColor: Colors.green,
+                accentColor: Colors.green,
+
+                buttonColor: Colors.pink,
+               
+            cardColor: Colors.blue,
+            highlightColor: Colors.red,
+            splashColor: Colors.orange,
                               ),
               home: NotifyAbsence(),
            //   home: OverviewScreen(),
