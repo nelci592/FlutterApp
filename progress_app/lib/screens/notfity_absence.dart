@@ -1,7 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:date_range_picker/date_range_picker.dart' as DateRangePicker;
 import 'package:intl/intl.dart';
 import 'dart:async';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import '../providers/absence.dart';
 
 class NotifyAbsence extends StatefulWidget {
   static const routeName = '/notifyabsence';
@@ -13,6 +18,16 @@ class NotifyAbsence extends StatefulWidget {
 class _NotifyAbsenceState extends State<NotifyAbsence> {
   DateTime _startDate = DateTime.now();
   DateTime _endDate = DateTime.now().add(Duration(days: 1));
+ 
+  void notify(startDate, endDate, spot) {
+    const url = 'https://testdb-83df0.firebaseio.com/dates.json';
+    http.post(url,
+        body: json.encode({
+          'startDateAbsence': startDate,
+          'endDateAbsence': endDate,
+          'spotNumber': spot,
+        }));
+  }
 
   Future displayDateRangePicker(BuildContext context) async {
     final List<DateTime> picked = await DateRangePicker.showDatePicker(
@@ -73,20 +88,44 @@ class _NotifyAbsenceState extends State<NotifyAbsence> {
               ),
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Text(
-                  "Start Date: ${DateFormat('MM/dd/yyyy').format(_startDate).toString()}"),
-              Text(
-                  "End Date: ${DateFormat('MM/dd/yyyy').format(_endDate).toString()}"),
-            ],
-          ),
-          RaisedButton(
-            child: Text("Continue"),
-            onPressed: () {
-              //add something here
-            },
+          Text(
+              "Start Date: ${DateFormat('MM/dd/yyyy').format(_startDate).toString()}"),
+          Text(
+              "End Date: ${DateFormat('MM/dd/yyyy').format(_endDate).toString()}"),
+          Container(
+            height: 50.0,
+            child: RaisedButton(
+              onPressed: () {
+                notify(_startDate.toString(), _endDate.toString(), 2);
+              },
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0)),
+              padding: EdgeInsets.all(0.0),
+              child: Ink(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color.fromRGBO(111, 198, 25, 1),
+                        Color.fromRGBO(159, 235, 83, 1)
+                      ],
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                    ),
+                    borderRadius: BorderRadius.circular(10.0)),
+                child: Container(
+                  constraints: BoxConstraints(maxWidth: 400.0, minHeight: 50.0),
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Continue",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ),
         ],
       )),

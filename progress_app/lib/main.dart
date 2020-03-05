@@ -19,31 +19,24 @@ class MyApp extends StatelessWidget {
           value: Auth(),
         ),
       ],
-       child: Consumer<Auth>(
+      child: Consumer<Auth>(
         builder: (ctx, auth, _) => MaterialApp(
-              title: 'Progress App',
-              theme: ThemeData(
-                fontFamily: 'Segoe',
-                backgroundColor: Colors.green,
-                primaryColor: Colors.green,
-                accentColor: Colors.green,
-
-                buttonColor: Colors.pink,
-               
-            cardColor: Colors.blue,
-            highlightColor: Colors.red,
-            splashColor: Colors.orange,
-                              ),
-              home: NotifyAbsence(),
-           //   home: OverviewScreen(),
-           //   home: SuccessBackToWork(),
-             // home: SuccessSharing(),
-             // home: auth.isAuth ? SuccessSharing() : AuthScreen(),
-              routes: {
-                SuccessSharing.routeName: (ctx) => SuccessSharing(),
-                //OverviewScreen.routeName: (ctx) => OverviewScreen(),
-              },
-            ),
+          title: 'Progress App',
+          theme: ThemeData(
+            fontFamily: 'Segoe',
+            primaryColor: Colors.green,
+            accentColor: Colors.green,
+          ),
+          home: NotifyAbsence(),
+          //   home: OverviewScreen(),
+          //   home: SuccessBackToWork(),
+          // home: SuccessSharing(),
+          // home: auth.isAuth ? SuccessSharing() : AuthScreen(),
+          routes: {
+            SuccessSharing.routeName: (ctx) => SuccessSharing(),
+            //OverviewScreen.routeName: (ctx) => OverviewScreen(),
+          },
+        ),
       ),
     );
   }
