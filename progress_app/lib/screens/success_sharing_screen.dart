@@ -7,7 +7,6 @@ class SuccessSharing extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
-    //final String successImage = "images/pictures/09_confirmation_star.svg";
 
     return Material(
         type: MaterialType.transparency,
@@ -16,7 +15,7 @@ class SuccessSharing extends StatelessWidget {
           height: deviceSize.height,
           width: deviceSize.width,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Stack(
@@ -71,7 +70,7 @@ class SuccessSharing extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    bottom: deviceSize.height * 0.08,
+                    bottom: deviceSize.height * 0.05,
                     left: deviceSize.width * 0.18,
                     child:Text("You are a star!",
                   textAlign: TextAlign.left,
@@ -82,7 +81,7 @@ class SuccessSharing extends StatelessWidget {
                   )),
                   ),
                    Positioned(
-                    bottom: deviceSize.height * 0.03,
+                    bottom: deviceSize.height * 0.001,
                     child:Text("Now your collegues can use your parking spot.",
                   textAlign: TextAlign.left,
                   style: TextStyle(
