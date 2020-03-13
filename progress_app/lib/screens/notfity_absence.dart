@@ -5,6 +5,7 @@ import 'package:date_range_picker/date_range_picker.dart' as DateRangePicker;
 import 'package:intl/intl.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
+import 'package:progress_app/screens/success_sharing_screen.dart';
 import 'dart:convert';
 import '../providers/absence.dart';
 
@@ -18,7 +19,7 @@ class NotifyAbsence extends StatefulWidget {
 class _NotifyAbsenceState extends State<NotifyAbsence> {
   DateTime _startDate = DateTime.now();
   DateTime _endDate = DateTime.now().add(Duration(days: 1));
- 
+
   void notify(startDate, endDate, spot) {
     const url = 'https://testdb-83df0.firebaseio.com/dates.json';
     http.post(url,
@@ -46,101 +47,128 @@ class _NotifyAbsenceState extends State<NotifyAbsence> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Center(
+    final deviceSize = MediaQuery.of(context).size;
+    return Material(
+        type: MaterialType.transparency,
+        child: new Container(
+          color: Colors.white,
+          height: deviceSize.height,
+          width: deviceSize.width,
           child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Container(
-            //  padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-            height: 50.0,
-            child: RaisedButton(
-              onPressed: () async {
-                await displayDateRangePicker(context);
-              },
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0)),
-              padding: EdgeInsets.all(0.0),
-              child: Ink(
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        Color.fromRGBO(111, 198, 25, 1),
-                        Color.fromRGBO(159, 235, 83, 1)
-                      ],
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                    ),
-                    borderRadius: BorderRadius.circular(10.0)),
-                child: Container(
-                  constraints: BoxConstraints(maxWidth: 400.0, minHeight: 50.0),
-                  alignment: Alignment.center,
-                  child: Text(
-                    "Notify absence",
-                    textAlign: TextAlign.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.fromLTRB(0, deviceSize.height * 0.2, 0, 0),
+                child: Text("Absence dates",
+                    textAlign: TextAlign.left,
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Color.fromRGBO(50, 50, 50, 1),
+                      fontSize: 30,
+                    )),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(0, deviceSize.height * 0.1, 0, 0),
+                child: Text(
+                    "Start Date: ${DateFormat('dd/MM/yyyy').format(_startDate).toString()}",
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      color: Color.fromRGBO(50, 50, 50, 1),
                       fontSize: 20,
+                    )),
+              ),
+              Container(
+                child: Text(
+                    "End Date: ${DateFormat('dd/MM/yyyy').format(_endDate).toString()}",
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      color: Color.fromRGBO(50, 50, 50, 1),
+                      fontSize: 20,
+                    )),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(0, deviceSize.height * 0.3, 0, 0),
+                child: Container(
+                  height: 50.0,
+                  child: RaisedButton(
+                    onPressed: () async {
+                      await displayDateRangePicker(context);
+                    },
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0)),
+                    child: Ink(
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              Color.fromRGBO(111, 198, 25, 1),
+                              Color.fromRGBO(159, 235, 83, 1)
+                            ],
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                          ),
+                          borderRadius: BorderRadius.circular(10.0)),
+                      child: Container(
+                        constraints:
+                            BoxConstraints(maxWidth: 400.0, minHeight: 50.0),
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Select dates",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ),
-          Text(
-              "Start Date: ${DateFormat('MM/dd/yyyy').format(_startDate).toString()}"),
-          Text(
-              "End Date: ${DateFormat('MM/dd/yyyy').format(_endDate).toString()}"),
-          Container(
-            height: 50.0,
-            child: RaisedButton(
-              onPressed: () {
-                notify(_startDate.toString(), _endDate.toString(), 2);
-              },
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0)),
-              padding: EdgeInsets.all(0.0),
-              child: Ink(
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        Color.fromRGBO(111, 198, 25, 1),
-                        Color.fromRGBO(159, 235, 83, 1)
-                      ],
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                    ),
-                    borderRadius: BorderRadius.circular(10.0)),
+              Container(
+                padding: EdgeInsets.fromLTRB(0, deviceSize.height * 0.05, 0, 0),
                 child: Container(
-                  constraints: BoxConstraints(maxWidth: 400.0, minHeight: 50.0),
-                  alignment: Alignment.center,
-                  child: Text(
-                    "Continue",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
+                  height: 50.0,
+                  child: RaisedButton(
+                    onPressed: () {
+                      notify(_startDate.toString(), _endDate.toString(), 2);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SuccessSharing()),
+                      );
+                    },
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0)),
+                    child: Ink(
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              Color.fromRGBO(111, 198, 25, 1),
+                              Color.fromRGBO(159, 235, 83, 1)
+                            ],
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                          ),
+                          borderRadius: BorderRadius.circular(10.0)),
+                      child: Container(
+                        constraints:
+                            BoxConstraints(maxWidth: 400.0, minHeight: 50.0),
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Confirm",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
+            ],
           ),
-        ],
-      )),
-      floatingActionButton: new Theme(
-        data: Theme.of(context).copyWith(
-          primaryColor: Colors.amber,
-        ),
-        child: new Builder(
-          builder: (context) => new FloatingActionButton(
-              child: new Icon(Icons.date_range),
-              onPressed: () async {
-                await displayDateRangePicker(context);
-              }),
-        ),
-      ),
-    );
+        ));
   }
 }

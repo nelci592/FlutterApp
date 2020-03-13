@@ -216,7 +216,6 @@ class _AuthCardState extends State<AuthCard> {
                   CircularProgressIndicator()
                 else
                   Container(
-                    //  padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                     height: 50.0,
                     child: RaisedButton(
                       onPressed: _submit,
