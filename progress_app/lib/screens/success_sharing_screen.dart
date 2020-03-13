@@ -71,6 +71,8 @@ class SuccessSharing extends StatelessWidget {
                   ),
                   Positioned(
                     top: deviceSize.height * 0.78,
+                    left: deviceSize.width * 0.15,
+                    right: deviceSize.width * 0.15,
                     child: Text("You are a star!",
                         style: TextStyle(
                           color: Color.fromRGBO(50, 50, 50, 1),
