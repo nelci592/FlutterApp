@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SuccessBackToWork extends StatelessWidget {
-    static const routeName = '/successbacktowork';
-   @override
+  static const routeName = '/successbacktowork';
+  @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
     //final String successImage = "images/pictures/09_confirmation_star.svg";
@@ -15,21 +15,21 @@ class SuccessBackToWork extends StatelessWidget {
           height: deviceSize.height,
           width: deviceSize.width,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Stack(
                 children: <Widget>[
                   Container(
                     width: deviceSize.width * 0.8,
-                    height: deviceSize.height * 0.8,
+                    height: deviceSize.height * 0.9,
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: Color.fromRGBO(159, 235, 83, 0.5)),
                   ),
                   Positioned(
                     left: deviceSize.width * 0.1,
-                    top: deviceSize.height * 0.1,
+                    top: deviceSize.height * 0.15,
                     child: Container(
                       width: deviceSize.width * 0.6,
                       height: deviceSize.height * 0.6,
@@ -40,7 +40,7 @@ class SuccessBackToWork extends StatelessWidget {
                   ),
                   Positioned(
                     left: deviceSize.width * 0.2,
-                    top: deviceSize.height * 0.2,
+                    top: deviceSize.height * 0.25,
                     child: Container(
                       width: deviceSize.width * 0.4,
                       height: deviceSize.height * 0.4,
@@ -59,7 +59,7 @@ class SuccessBackToWork extends StatelessWidget {
                   ),
                   Positioned(
                     left: deviceSize.width * 0.3,
-                    top: deviceSize.height * 0.3,
+                    top: deviceSize.height * 0.35,
                     child: Container(
                       width: deviceSize.width * 0.2,
                       height: deviceSize.height * 0.2,
@@ -70,27 +70,24 @@ class SuccessBackToWork extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    bottom: deviceSize.height * 0.08,
-                    left: deviceSize.width * 0.01,
-                    child:Text("Back to work confirmed!",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    color: Color.fromRGBO(50, 50, 50, 1),
-                    fontSize: 30,
-                    fontFamily: "Segoe",
-                  )),
+                    top: deviceSize.height * 0.78,
+                    child: Text("Back to work confirmed!",
+                        style: TextStyle(
+                          color: Color.fromRGBO(50, 50, 50, 1),
+                          fontSize: 30,
+                          fontFamily: "Segoe",
+                        )),
                   ),
-                   Positioned(
-                    bottom: deviceSize.height * 0.03,
-                    left: deviceSize.width * 0.01,
-                    child:Text("A big THANK YOU for sharing your parking spot.",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    color: Color.fromRGBO(50, 50, 50, 1),
-                    fontSize: 15,
-                    fontFamily: "Segoe",
-                    //  decoration: TextDecoration.none
-                  )),
+                  Positioned(
+                    top: deviceSize.height * 0.85,
+                    child:
+                        Text("A big THANK YOU for sharing your parking spot.",
+                            style: TextStyle(
+                              color: Color.fromRGBO(50, 50, 50, 1),
+                              fontSize: 15,
+                              fontFamily: "Segoe",
+                              //  decoration: TextDecoration.none
+                            )),
                   ),
                 ],
               ),

@@ -22,14 +22,14 @@ class SuccessSharing extends StatelessWidget {
                 children: <Widget>[
                   Container(
                     width: deviceSize.width * 0.8,
-                    height: deviceSize.height * 0.8,
+                    height: deviceSize.height * 0.9,
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: Color.fromRGBO(159, 235, 83, 0.5)),
                   ),
                   Positioned(
                     left: deviceSize.width * 0.1,
-                    top: deviceSize.height * 0.1,
+                    top: deviceSize.height * 0.15,
                     child: Container(
                       width: deviceSize.width * 0.6,
                       height: deviceSize.height * 0.6,
@@ -40,7 +40,7 @@ class SuccessSharing extends StatelessWidget {
                   ),
                   Positioned(
                     left: deviceSize.width * 0.2,
-                    top: deviceSize.height * 0.2,
+                    top: deviceSize.height * 0.25,
                     child: Container(
                       width: deviceSize.width * 0.4,
                       height: deviceSize.height * 0.4,
@@ -59,7 +59,7 @@ class SuccessSharing extends StatelessWidget {
                   ),
                   Positioned(
                     left: deviceSize.width * 0.3,
-                    top: deviceSize.height * 0.3,
+                    top: deviceSize.height * 0.35,
                     child: Container(
                       width: deviceSize.width * 0.2,
                       height: deviceSize.height * 0.2,
@@ -70,26 +70,23 @@ class SuccessSharing extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    bottom: deviceSize.height * 0.05,
-                    left: deviceSize.width * 0.18,
-                    child:Text("You are a star!",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    color: Color.fromRGBO(50, 50, 50, 1),
-                    fontSize: 30,
-                    fontFamily: "Segoe",
-                  )),
+                    top: deviceSize.height * 0.78,
+                    child: Text("You are a star!",
+                        style: TextStyle(
+                          color: Color.fromRGBO(50, 50, 50, 1),
+                          fontSize: 30,
+                          fontFamily: "Segoe",
+                        )),
                   ),
-                   Positioned(
-                    bottom: deviceSize.height * 0.001,
-                    child:Text("Now your collegues can use your parking spot.",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    color: Color.fromRGBO(50, 50, 50, 1),
-                    fontSize: 16,
-                    fontFamily: "Segoe",
-                    //  decoration: TextDecoration.none
-                  )),
+                  Positioned(
+                    top: deviceSize.height * 0.85,
+                    child: Text("Now your collegues can use your parking spot.",
+                        style: TextStyle(
+                          color: Color.fromRGBO(50, 50, 50, 1),
+                          fontSize: 15,
+                          fontFamily: "Segoe",
+                          //  decoration: TextDecoration.none
+                        )),
                   ),
                 ],
               ),
