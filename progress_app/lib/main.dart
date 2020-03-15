@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
            primaryColor: Colors.white,
             accentColor: Colors.green,
           ),
-          home: NotifyAbsence(),
+          home: TerminateAbsence(),
           //   home: OverviewScreen(),
           //   home: SuccessBackToWork(),
           // home: SuccessSharing(),
