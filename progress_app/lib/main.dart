@@ -9,6 +9,7 @@ import './screens/success_back_to_work.dart';
 import './screens/success_sharing_screen.dart';
 import './screens/notfity_absence.dart';
 import './screens/terminate_absence.dart';
+import './screens/splash.dart';
 
 void main() => runApp(MyApp());
 
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
            primaryColor: Colors.white,
             accentColor: Colors.green,
           ),
-          home: TerminateAbsence(),
+          home: StartScreen(),
           //   home: OverviewScreen(),
           //   home: SuccessBackToWork(),
           // home: SuccessSharing(),
