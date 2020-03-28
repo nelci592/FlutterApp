@@ -6,8 +6,6 @@ class SuccessBackToWork extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
-    //final String successImage = "images/pictures/09_confirmation_star.svg";
-
     return Material(
         type: MaterialType.transparency,
         child: new Container(
