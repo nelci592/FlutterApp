@@ -5,6 +5,7 @@ import 'package:date_range_picker/date_range_picker.dart' as DateRangePicker;
 import 'package:intl/intl.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
+import 'package:progress_app/screens/success_back_to_work.dart';
 import 'package:progress_app/screens/success_sharing_screen.dart';
 import 'dart:convert';
 import '../providers/absence.dart';
@@ -87,7 +88,9 @@ class _NotifyAbsenceState extends State<NotifyAbsence> {
                     )),
               ),
               Container(
-                padding: EdgeInsets.fromLTRB(0, deviceSize.height * 0.3, 0, 0),
+                width: deviceSize.width * 0.9,
+                padding: EdgeInsets.fromLTRB(
+                    0, deviceSize.height * 0.32, 0, deviceSize.height * 0.03),
                 child: Container(
                   height: 50.0,
                   child: RaisedButton(
@@ -96,6 +99,7 @@ class _NotifyAbsenceState extends State<NotifyAbsence> {
                     },
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0)),
+                    padding: EdgeInsets.all(0.0),
                     child: Ink(
                       decoration: BoxDecoration(
                           gradient: LinearGradient(
@@ -112,7 +116,7 @@ class _NotifyAbsenceState extends State<NotifyAbsence> {
                             BoxConstraints(maxWidth: 400.0, minHeight: 50.0),
                         alignment: Alignment.center,
                         child: Text(
-                          "Select dates",
+                          "Select Dates",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.white,
@@ -125,42 +129,41 @@ class _NotifyAbsenceState extends State<NotifyAbsence> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.fromLTRB(0, deviceSize.height * 0.05, 0, 0),
-                child: Container(
-                  height: 50.0,
-                  child: RaisedButton(
-                    onPressed: () {
-                      notify(_startDate.toString(), _endDate.toString(), 2);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => SuccessSharing()),
-                      );
-                    },
-                    shape: RoundedRectangleBorder(
+                height: 50.0,
+                width: deviceSize.width * 0.9,
+                child: RaisedButton(
+                  onPressed: () {
+                    notify(_startDate.toString(), _endDate.toString(), 2);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SuccessSharing()),
+                    );
+                  },
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0)),
+                  padding: EdgeInsets.all(0.0),
+                  child: Ink(
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Color.fromRGBO(111, 198, 25, 1),
+                            Color.fromRGBO(159, 235, 83, 1)
+                          ],
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                        ),
                         borderRadius: BorderRadius.circular(10.0)),
-                    child: Ink(
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              Color.fromRGBO(111, 198, 25, 1),
-                              Color.fromRGBO(159, 235, 83, 1)
-                            ],
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                          ),
-                          borderRadius: BorderRadius.circular(10.0)),
-                      child: Container(
-                        constraints:
-                            BoxConstraints(maxWidth: 400.0, minHeight: 50.0),
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Confirm",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                          ),
+                    child: Container(
+                      constraints:
+                          BoxConstraints(maxWidth: 400.0, minHeight: 50.0),
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Confirm",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
                         ),
                       ),
                     ),
