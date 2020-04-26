@@ -61,8 +61,8 @@ class SuccessBackToWork extends StatelessWidget {
                     child: Container(
                       width: deviceSize.width * 0.2,
                       height: deviceSize.height * 0.2,
-                      child: SvgPicture.string(
-                        '''<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs><style>.cls-1{fill:#010101;}</style></defs><title>10_confirmation_medal</title><path id="confirmation_medal" class="cls-1" d="M227.78,146.41,167.29,45.6a28,28,0,0,0-24-13.6H46A14,14,0,0,0,34.55,54l97.37,139.09a181.06,181.06,0,0,1,95.86-46.71ZM466,32H368.72a28,28,0,0,0-24,13.6L284.22,146.41a181.11,181.11,0,0,1,95.86,46.7L477.45,54A14,14,0,0,0,466,32ZM256,172A154,154,0,1,0,410,326,154,154,0,0,0,256,172Zm81,137.6-33.19,32.34,7.85,45.7a10,10,0,0,1-14.57,10.57L256,376.65l-41,21.56a10,10,0,0,1-14.57-10.57l7.85-45.7L175.05,309.6a10.05,10.05,0,0,1,5.56-17.14l45.88-6.68L247,244.2a9.87,9.87,0,0,1,9-5.6,10,10,0,0,1,9,5.6l20.5,41.58,45.88,6.68A10.05,10.05,0,0,1,337,309.6Z"/></svg>''',
+                      child: SvgPicture.asset(
+                        'assets/images/10_confirmation_medal.svg',
                         color: Colors.white,
                       ),
                     ),
