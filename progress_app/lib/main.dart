@@ -1,57 +1,16 @@
-// import 'package:flutter/material.dart';
-// import 'dart:async';
-// import 'package:progress_app/screens/terminate_absence.dart';
-// import 'package:provider/provider.dart';
-// import './providers/auth.dart';
-// import './screens/auth_screen.dart';
-// import './screens/overview_screen.dart';
-// import './screens/success_back_to_work.dart';
-// import './screens/success_sharing_screen.dart';
-// import './screens/notfity_absence.dart';
-// import './screens/terminate_absence.dart';
-// import './screens/onboarding_screen.dart';
-// import './screens/home_screen.dart';
-
-// // void main() {
-// //   runApp(new MaterialApp(
-// //     home: new SplashScreen(),
-// //     routes: <String, WidgetBuilder>{
-// //       '/HomeScreen': (BuildContext context) => new HomeScreen()
-// //     },
-// //   ));
-// // }
-
-// // class SplashScreen extends StatefulWidget {
-// //   @override
-// //   _SplashScreenState createState() => new _SplashScreenState();
-// // }
-
-// // class _SplashScreenState extends State<SplashScreen> {
-// //   startTime() async {
-// //     var _duration = new Duration(seconds: 2);
-// //     return new Timer(_duration, navigationPage);
-// //   }
-
-// //   void navigationPage() {
-// //     Navigator.of(context).pushReplacementNamed('/HomeScreen');
-// //   }
-
-// //   @override
-// //   void initState() {
-// //     super.initState();
-// //     startTime();
-// //   }
-
-// //   @override
-// //   Widget build(BuildContext context) {
-// //     return new Scaffold(
-// //       body: new Center(
-// //         child: new Image.asset('images/first.png'),
-// //       ),
-// //     );
-// //   }
-// // }
-
+import 'package:flutter/material.dart';
+import 'dart:async';
+import 'package:progress_app/screens/terminate_absence.dart';
+import 'package:provider/provider.dart';
+import './providers/auth.dart';
+import './screens/auth_screen.dart';
+import './screens/overview_screen.dart';
+import './screens/success_back_to_work.dart';
+import './screens/success_sharing_screen.dart';
+import './screens/notfity_absence.dart';
+import './screens/terminate_absence.dart';
+import './screens/onboarding_screen.dart';
+import './screens/home_screen.dart';
 
 // void main() => runApp(MyApp());
 
@@ -88,13 +47,6 @@
 //   }
 // }
 
-
-
-import 'package:flutter_svg/svg.dart';
-//SvgPicture.asset( 'assets/images/002_onboarding_games.svg',)
-
-import 'package:flutter/material.dart';
-
 void main() {
   runApp(new MyApp());
 }
@@ -103,7 +55,7 @@ void main() {
 class MyApp extends StatelessWidget {
   var _routes = <String, WidgetBuilder>{
     "/anotherPage": (BuildContext context) =>
-    new AnotherPage(title: "Another Page"),
+        new AnotherPage(title: "Another Page"),
   };
 
   @override
@@ -130,50 +82,54 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
+    final deviceSize = MediaQuery.of(context).size;
+
     var decoratedBox = new DecoratedBox(
         decoration: new BoxDecoration(
-          image: new DecorationImage(
-            fit: BoxFit.fitWidth,
-            image: new AssetImage('assets/images/test.png'),
-          ),
-          shape: BoxShape.circle,
-        )
-    );
+      image: new DecorationImage(
+        fit: BoxFit.fitWidth,
+        image: new AssetImage('assets/images/test.png'),
+      ),
+      shape: BoxShape.circle,
+    ));
 
-    // hero top left
     var hero = new Hero(
-      tag: 'hero-tag-llama',
+      tag: 'hero-tag',
       child: decoratedBox,
     );
 
-    var _children = <Widget>[
-      new Container(
-        height: 250.0,
-        width: 250.0,
-        child: hero,
+    return Material(
+      type: MaterialType.transparency,
+      child: new Container(
+        color: Colors.white,
+        height: deviceSize.height,
+        width: deviceSize.width,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            new Container(
+              height: deviceSize.height * 0.6,
+              width: deviceSize.width * 0.8,
+              child: hero,
+            ),
+            RaisedButton(
+              onPressed: () {
+                _onPressed();
+              },
+            ),
+          ],
+        ),
       ),
-    ];
-
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text(widget.title),
-      ),
-      body: new Column(children: _children),
-      floatingActionButton: new FloatingActionButton(
-        onPressed: _onPressed,
-        tooltip: 'Increment',
-        child: new Icon(Icons.done),
-      ),);
+    );
   }
 
   void _onPressed() {
     Navigator.of(context).pushNamed("/anotherPage");
   }
 }
-
 
 // place: "/anotherPage"
 class AnotherPage extends StatefulWidget {
@@ -188,35 +144,40 @@ class AnotherPage extends StatefulWidget {
 class _AnotherPageState extends State<AnotherPage> {
   @override
   Widget build(BuildContext context) {
-    // llama Image
+    final deviceSize = MediaQuery.of(context).size;
+
     var decoratedBox = new DecoratedBox(
         decoration: new BoxDecoration(
-          image: new DecorationImage(
-            fit: BoxFit.fitWidth,
-            image: new AssetImage('assets/images/test.png'),
-          ),
-          shape: BoxShape.circle,
-        )
-    );
+      image: new DecorationImage(
+        fit: BoxFit.fitWidth,
+        image: new AssetImage('assets/images/test.png'),
+      ),
+      shape: BoxShape.circle,
+    ));
 
     // hero center
     var hero = new Hero(
-      tag: 'hero-tag-llama',
+      tag: 'hero-tag',
       child: decoratedBox,
     );
 
-    var center = new Center(
+    return Material(
+      type: MaterialType.transparency,
       child: new Container(
-        height: 50.0,
-        width: 50.0,
-        child: hero,
-      ),);
-
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text(widget.title),
+        color: Colors.white,
+        height: deviceSize.height,
+        width: deviceSize.width,
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                height: deviceSize.height * 0.3,
+                width: deviceSize.width * 0.4,
+                child: hero,
+              ),
+            ]),
       ),
-      body: center,
     );
   }
 }
