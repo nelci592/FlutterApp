@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:progress_app/screens/auth_screen.dart';
-
 class SplashScreen extends StatefulWidget {
   @override
   Splash createState() => Splash();
@@ -17,10 +15,10 @@ class Splash extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
-    Timer(
-        Duration(seconds: 3),
-        () => Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (BuildContext context) => AnotherPage())));
+    // Timer(
+    //     Duration(seconds: 23),
+    //     () => Navigator.of(context).pushReplacement(MaterialPageRoute(
+    //         builder: (BuildContext context) => AnotherPage())));
 
     var assetsImage = new AssetImage(
         'assets/images/test.png'); //<- Creates an object that fetches an image.
@@ -33,9 +31,23 @@ class Splash extends State<SplashScreen> {
     return Material(
       type: MaterialType.transparency,
       child: new Container(
-        color: Colors.white,
         height: deviceSize.height,
         width: deviceSize.width,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.bottomRight,
+                end: Alignment.topLeft,
+                stops: [
+              0.4,
+              0.6,
+              0.9
+            ],
+                colors: [
+              Color.fromRGBO(111, 198, 25, 1),
+              Color.fromRGBO(159, 235, 83, 1),
+              Color.fromRGBO(132, 214, 50, 1),
+              
+            ])),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,

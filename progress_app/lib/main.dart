@@ -10,7 +10,6 @@ import './screens/success_sharing_screen.dart';
 import './screens/notfity_absence.dart';
 import './screens/terminate_absence.dart';
 import './screens/onboarding_screen.dart';
-import './screens/home_screen.dart';
 import './screens/splash.dart';
 
 void main() => runApp(MyApp());
