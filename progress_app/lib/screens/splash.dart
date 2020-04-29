@@ -15,10 +15,10 @@ class Splash extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
-    // Timer(
-    //     Duration(seconds: 23),
-    //     () => Navigator.of(context).pushReplacement(MaterialPageRoute(
-    //         builder: (BuildContext context) => AnotherPage())));
+    Timer(
+        Duration(seconds: 5),
+        () => Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (BuildContext context) => AnotherPage())));
 
     var assetsImage = new AssetImage(
         'assets/images/test.png'); //<- Creates an object that fetches an image.
