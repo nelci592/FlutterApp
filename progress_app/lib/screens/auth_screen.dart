@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -8,36 +6,86 @@ import '../models/http_exception.dart';
 
 enum AuthMode { Signup, Login }
 
-class AuthScreen extends StatelessWidget {
+class AuthScreen extends StatefulWidget {
   static const routeName = '/auth';
+  @override
+  _AuthScreenState createState() => _AuthScreenState();
+}
 
+class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
 
-    return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          Container(
-            height: deviceSize.height,
-            width: deviceSize.width,
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    child: AuthCard(),
-                  ),
-                ],
+    var decoratedBox = new DecoratedBox(
+        decoration: new BoxDecoration(
+      image: new DecorationImage(
+        fit: BoxFit.fitWidth,
+        image: new AssetImage('assets/images/progress.png'),
+      ),
+      shape: BoxShape.circle,
+    ));
+
+    // hero center
+    var hero = new Hero(
+      tag: 'hero-tag',
+      child: decoratedBox,
+    );
+
+    return Material(
+      type: MaterialType.transparency,
+      child: new Container(
+        color: Colors.white,
+        height: deviceSize.height,
+        width: deviceSize.width,
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                height: deviceSize.height * 0.2,
+                width: deviceSize.width * 0.6,
+                child: hero,
+              //  color: Colors.green,
               ),
-            ),
-          ),
-        ],
+              Container(
+                child: AuthCard(),
+              ),
+            ]),
       ),
     );
   }
 }
+// class AuthScreen extends StatelessWidget {
+//   static const routeName = '/auth';
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final deviceSize = MediaQuery.of(context).size;
+
+//     return Scaffold(
+//       body: Stack(
+//         children: <Widget>[
+//           Container(
+//             height: deviceSize.height,
+//             width: deviceSize.width,
+//             child: SingleChildScrollView(
+//               child: Column(
+//                 mainAxisAlignment: MainAxisAlignment.center,
+//                 crossAxisAlignment: CrossAxisAlignment.center,
+//                 children: <Widget>[
+//                   Container(
+//                     child: AuthCard(),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
 
 class AuthCard extends StatefulWidget {
   const AuthCard({
@@ -140,10 +188,14 @@ class _AuthCardState extends State<AuthCard> {
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
     return Container(
-      padding: EdgeInsets.fromLTRB(0, 74, 0, 74),
+      height: deviceSize.height * 0.8,
+      width: deviceSize.width * 0.85,
+    //  color: Colors.yellow,
+     // padding: EdgeInsets.fromLTRB(
+    //      deviceSize.width * 0.05, 0, deviceSize.width * 0.05, 0),
       child: Container(
         width: deviceSize.width,
-        padding: EdgeInsets.all(26.0),
+        padding: EdgeInsets.all(10.0),
         child: Form(
           key: _formKey,
           child: SingleChildScrollView(
@@ -152,7 +204,7 @@ class _AuthCardState extends State<AuthCard> {
                 SizedBox(
                   width: double.infinity,
                   child: Container(
-                    padding: EdgeInsets.fromLTRB(0, 62, 0, 20),
+                   // padding: EdgeInsets.fromLTRB(0, 62, 0, 20),
                     child: Text(
                         _authMode == AuthMode.Login ? 'Log in' : 'Sign up',
                         textAlign: TextAlign.left,
