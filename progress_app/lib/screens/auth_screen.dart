@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../providers/auth.dart';
 import '../models/http_exception.dart';
 
@@ -45,10 +44,12 @@ class _AuthScreenState extends State<AuthScreen> {
               Container(
                 height: deviceSize.height * 0.2,
                 width: deviceSize.width * 0.6,
+                padding: EdgeInsets.only(top: deviceSize.height * 0.05),
                 child: hero,
               //  color: Colors.green,
               ),
               Container(
+                padding: EdgeInsets.only(top: deviceSize.height * 0.05),
                 child: AuthCard(),
               ),
             ]),
@@ -56,36 +57,7 @@ class _AuthScreenState extends State<AuthScreen> {
     );
   }
 }
-// class AuthScreen extends StatelessWidget {
-//   static const routeName = '/auth';
 
-//   @override
-//   Widget build(BuildContext context) {
-//     final deviceSize = MediaQuery.of(context).size;
-
-//     return Scaffold(
-//       body: Stack(
-//         children: <Widget>[
-//           Container(
-//             height: deviceSize.height,
-//             width: deviceSize.width,
-//             child: SingleChildScrollView(
-//               child: Column(
-//                 mainAxisAlignment: MainAxisAlignment.center,
-//                 crossAxisAlignment: CrossAxisAlignment.center,
-//                 children: <Widget>[
-//                   Container(
-//                     child: AuthCard(),
-//                   ),
-//                 ],
-//               ),
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
 
 class AuthCard extends StatefulWidget {
   const AuthCard({
@@ -188,14 +160,8 @@ class _AuthCardState extends State<AuthCard> {
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
     return Container(
-      height: deviceSize.height * 0.8,
+      height: deviceSize.height * 0.7,
       width: deviceSize.width * 0.85,
-    //  color: Colors.yellow,
-     // padding: EdgeInsets.fromLTRB(
-    //      deviceSize.width * 0.05, 0, deviceSize.width * 0.05, 0),
-      child: Container(
-        width: deviceSize.width,
-        padding: EdgeInsets.all(10.0),
         child: Form(
           key: _formKey,
           child: SingleChildScrollView(
@@ -316,7 +282,6 @@ class _AuthCardState extends State<AuthCard> {
             ),
           ),
         ),
-      ),
     );
   }
 }
