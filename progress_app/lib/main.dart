@@ -11,7 +11,6 @@ import './screens/notfity_absence.dart';
 import './screens/terminate_absence.dart';
 import './screens/onboarding_screen.dart';
 import './screens/splash.dart';
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -31,7 +30,7 @@ class MyApp extends StatelessWidget {
             primaryColor: Colors.white,
             accentColor: Colors.green,
           ),
-            home: AuthScreen(),
+            home: OnboardingScreen(),
           //   home: OverviewScreen(),
           //   home: SuccessBackToWork(),
           // home: SuccessSharing(),
