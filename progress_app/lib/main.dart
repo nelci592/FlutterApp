@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
             primaryColor: Colors.white,
             accentColor: Colors.green,
           ),
-            home: OnboardingScreen(),
+            home: SplashScreen(),
           //   home: OverviewScreen(),
           //   home: SuccessBackToWork(),
           // home: SuccessSharing(),

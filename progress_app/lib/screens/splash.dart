@@ -142,7 +142,7 @@ class _AnotherPageState extends State<AnotherPage> {
                 child: heroLogo,
               ),
               Container(
-                padding: EdgeInsets.only(top: deviceSize.height * 0.7),
+                padding: EdgeInsets.only(top: deviceSize.height * 0.3),
                 height: deviceSize.height * 0.01,
                 width: deviceSize.width * 0.01,
                 child: heroPlanet,
@@ -234,7 +234,7 @@ class _SecondPageState extends State<SecondPage> {
                   ),
                   Positioned(
                     left: deviceSize.width * 0.1,
-                    top: deviceSize.height * 0.05,
+                    top: deviceSize.height * 0.3,
                     child: Container(
                         height: deviceSize.height * 0.02,
                         width: deviceSize.width * 0.02,
@@ -464,7 +464,7 @@ class _AfterForthPageState extends State<AfterForthPage> {
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
     Timer(
-        Duration(seconds: 1),
+        Duration(milliseconds: 300),
         () => Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (BuildContext context) => FifthPage())));
 
@@ -703,7 +703,7 @@ class _SixthPageState extends State<SixthPage> {
                   ),
                   Positioned(
                     left: deviceSize.width * 0.11,
-                    top: deviceSize.height * 0.25,
+                    top: deviceSize.height * 0.24,
                     child: Container(
                         height: deviceSize.height * 0.15,
                         width: deviceSize.width * 0.15,
