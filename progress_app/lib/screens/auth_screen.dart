@@ -16,21 +16,6 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
 
-    var decoratedBox = new DecoratedBox(
-        decoration: new BoxDecoration(
-      image: new DecorationImage(
-        fit: BoxFit.fitWidth,
-        image: new AssetImage('assets/images/progress.png'),
-      ),
-      shape: BoxShape.circle,
-    ));
-
-    // hero center
-    var hero = new Hero(
-      tag: 'hero-tag',
-      child: decoratedBox,
-    );
-
     return Material(
       type: MaterialType.transparency,
       child: new Container(
@@ -45,8 +30,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 height: deviceSize.height * 0.2,
                 width: deviceSize.width * 0.6,
                 padding: EdgeInsets.only(top: deviceSize.height * 0.05),
-                child: hero,
-              //  color: Colors.green,
+                child: Image.asset('assets/images/progress.png'),
               ),
               Container(
                 padding: EdgeInsets.only(top: deviceSize.height * 0.05),
