@@ -1,17 +1,8 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-import 'package:progress_app/screens/terminate_absence.dart';
 import 'package:provider/provider.dart';
 import './providers/auth.dart';
 import './screens/auth_screen.dart';
 import './screens/overview_screen.dart';
-import './screens/success_back_to_work.dart';
-import './screens/success_sharing_screen.dart';
-import './screens/notfity_absence.dart';
-import './screens/terminate_absence.dart';
-import './screens/onboarding_screen.dart';
-import './screens/splash.dart';
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -23,22 +14,20 @@ class MyApp extends StatelessWidget {
           value: Auth(),
         ),
       ],
-      child: Consumer<Auth>(
+       child: Consumer<Auth>(
         builder: (ctx, auth, _) => MaterialApp(
-          title: 'Progress App',
-          theme: ThemeData(
-            fontFamily: 'Segoe',
-            primaryColor: Colors.white,
-            accentColor: Colors.green,
-          ),
-          home: SplashScreen(),
-          // home: auth.isAuth ? SuccessSharing() : AuthScreen(),
-          routes: {
-            SuccessSharing.routeName: (ctx) => SuccessSharing(),
-            SuccessBackToWork.routeName: (ctx) => SuccessBackToWork(),
-            //OverviewScreen.routeName: (ctx) => OverviewScreen(),
-          },
-        ),
+              title: 'Progress App',
+              theme: ThemeData(
+                fontFamily: 'Segoe',
+                 primaryColor: Colors.white,
+                 accentColor: Colors.green,
+              ),
+              home: AuthScreen(),
+              //home: auth.isAuth ? OverviewScreen() : AuthScreen(),
+              routes: {
+                OverviewScreen.routeName: (ctx) => OverviewScreen(),
+              },
+            ),
       ),
     );
   }

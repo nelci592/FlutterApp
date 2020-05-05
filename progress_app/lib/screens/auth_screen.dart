@@ -15,33 +15,36 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
-
     return Material(
-      type: MaterialType.transparency,
-      child: new Container(
-        color: Colors.white,
-        height: deviceSize.height,
-        width: deviceSize.width,
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                height: deviceSize.height * 0.2,
-                width: deviceSize.width * 0.6,
-                padding: EdgeInsets.only(top: deviceSize.height * 0.05),
-                child: Image.asset('assets/images/progress.png'),
-              ),
-              Container(
-                padding: EdgeInsets.only(top: deviceSize.height * 0.05),
-                child: AuthCard(),
-              ),
-            ]),
-      ),
-    );
+        type: MaterialType.transparency,
+        child: Theme(
+          data: Theme.of(context)
+              .copyWith(primaryColor: Color.fromRGBO(105, 105, 105, 1)),
+          child: Builder(
+            builder: (context) => Container(
+              color: Colors.white,
+              height: deviceSize.height,
+              width: deviceSize.width,
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      height: deviceSize.height * 0.2,
+                      width: deviceSize.width * 0.6,
+                      padding: EdgeInsets.only(top: deviceSize.height * 0.05),
+                      child: Image.asset('assets/images/progress.png'),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(top: deviceSize.height * 0.05),
+                      child: AuthCard(),
+                    ),
+                  ]),
+            ),
+          ),
+        ));
   }
 }
-
 
 class AuthCard extends StatefulWidget {
   const AuthCard({
@@ -146,126 +149,128 @@ class _AuthCardState extends State<AuthCard> {
     return Container(
       height: deviceSize.height * 0.7,
       width: deviceSize.width * 0.85,
-        child: Form(
-          key: _formKey,
-          child: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                SizedBox(
-                  width: double.infinity,
-                  child: Container(
-                   // padding: EdgeInsets.fromLTRB(0, 62, 0, 20),
-                    child: Text(
-                        _authMode == AuthMode.Login ? 'Log in' : 'Sign up',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            color: Color.fromRGBO(50, 50, 50, 1),
-                            fontSize: 30,
-                            fontFamily: 'Segoe')),
-                  ),
+      child: Form(
+        key: _formKey,
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              SizedBox(
+                width: double.infinity,
+                child: Container(
+                  child: Text(
+                      _authMode == AuthMode.Login ? 'Log in' : 'Sign up',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          color: Color.fromRGBO(50, 50, 50, 1),
+                          fontSize: 30,
+                          fontFamily: 'Segoe')),
                 ),
+              ),
+              TextFormField(
+                style: TextStyle(
+                  fontSize: 14,
+                ),
+                decoration: InputDecoration(labelText: 'Email'),
+                keyboardType: TextInputType.emailAddress,
+                validator: (value) {
+                  if (value.isEmpty || !value.contains('@')) {
+                    return 'Invalid email!';
+                  }
+                  return null;
+                },
+                onSaved: (value) {
+                  _authData['email'] = value;
+                },
+              ),
+              TextFormField(
+                style: TextStyle(
+                  fontSize: 14,
+                ),
+                decoration: InputDecoration(labelText: 'Password'),
+                obscureText: true,
+                controller: _passwordController,
+                validator: (value) {
+                  if (value.isEmpty || value.length < 5) {
+                    return 'Password is too short!';
+                  }
+                  return null;
+                },
+                onSaved: (value) {
+                  _authData['password'] = value;
+                },
+              ),
+              if (_authMode == AuthMode.Signup)
                 TextFormField(
                   style: TextStyle(
                     fontSize: 14,
                   ),
-                  decoration: InputDecoration(labelText: 'Email'),
-                  keyboardType: TextInputType.emailAddress,
-                  validator: (value) {
-                    if (value.isEmpty || !value.contains('@')) {
-                      return 'Invalid email!';
-                    }
-                  },
-                  onSaved: (value) {
-                    _authData['email'] = value;
-                  },
-                ),
-                TextFormField(
-                  style: TextStyle(
-                    fontSize: 14,
-                  ),
-                  decoration: InputDecoration(labelText: 'Password'),
+                  enabled: _authMode == AuthMode.Signup,
+                  decoration: InputDecoration(labelText: 'Confirm Password'),
                   obscureText: true,
-                  controller: _passwordController,
-                  validator: (value) {
-                    if (value.isEmpty || value.length < 5) {
-                      return 'Password is too short!';
-                    }
-                  },
-                  onSaved: (value) {
-                    _authData['password'] = value;
-                  },
-                ),
-                if (_authMode == AuthMode.Signup)
-                  TextFormField(
-                    style: TextStyle(
-                      fontSize: 14,
-                    ),
-                    enabled: _authMode == AuthMode.Signup,
-                    decoration: InputDecoration(labelText: 'Confirm Password'),
-                    obscureText: true,
-                    validator: _authMode == AuthMode.Signup
-                        ? (value) {
-                            if (value != _passwordController.text) {
-                              return 'Passwords do not match!';
-                            }
+                  validator: _authMode == AuthMode.Signup
+                      ? (value) {
+                          if (value != _passwordController.text) {
+                            return 'Passwords do not match!';
                           }
-                        : null,
-                  ),
-                SizedBox(
-                  height: 20,
+                          return null;
+                        }
+                      : null,
                 ),
-                if (_isLoading)
-                  CircularProgressIndicator()
-                else
-                  Container(
-                    height: 50.0,
-                    child: RaisedButton(
-                      onPressed: _submit,
-                      shape: RoundedRectangleBorder(
+              SizedBox(
+                height: 20,
+              ),
+              if (_isLoading)
+                CircularProgressIndicator()
+              else
+                Container(
+                  height: 50.0,
+                  child: RaisedButton(
+                    onPressed: _submit,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0)),
+                    padding: EdgeInsets.all(0.0),
+                    child: Ink(
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              Color.fromRGBO(111, 198, 25, 1),
+                              Color.fromRGBO(159, 235, 83, 1)
+                            ],
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                          ),
                           borderRadius: BorderRadius.circular(10.0)),
-                      padding: EdgeInsets.all(0.0),
-                      child: Ink(
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                Color.fromRGBO(111, 198, 25, 1),
-                                Color.fromRGBO(159, 235, 83, 1)
-                              ],
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
-                            ),
-                            borderRadius: BorderRadius.circular(10.0)),
-                        child: Container(
-                          constraints:
-                              BoxConstraints(maxWidth: 400.0, minHeight: 50.0),
-                          alignment: Alignment.center,
-                          child: Text(
-                            _authMode == AuthMode.Login ? 'Log in' : 'Sign up',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                            ),
+                      child: Container(
+                        constraints:
+                            BoxConstraints(maxWidth: 400.0, minHeight: 50.0),
+                        alignment: Alignment.center,
+                        child: Text(
+                          _authMode == AuthMode.Login ? 'Log in' : 'Sign up',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
                           ),
                         ),
                       ),
                     ),
                   ),
-                FlatButton(
-                  child: Text(
-                    '${_authMode == AuthMode.Login ? 'Sign up' : 'Log in'} Instead',
-                    style: TextStyle(
-                        color: Colors.black, fontSize: 18, fontFamily: 'Segoe'),
-                  ),
-                  onPressed: _switchAuthMode,
-                  padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  textColor: Color.fromRGBO(0, 0, 0, 1),
                 ),
-              ],
-            ),
+              FlatButton(
+                child: Text(
+                  '${_authMode == AuthMode.Login ? 'Sign up' : 'Log in'} Instead',
+                  style: TextStyle(
+                      color: Colors.black, fontSize: 18, fontFamily: 'Segoe'),
+                ),
+                onPressed: _switchAuthMode,
+                padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                textColor: Color.fromRGBO(0, 0, 0, 1),
+              ),
+            ],
           ),
         ),
+      ),
     );
   }
 }
