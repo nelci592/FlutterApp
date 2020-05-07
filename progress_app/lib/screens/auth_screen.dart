@@ -19,7 +19,7 @@ class _AuthScreenState extends State<AuthScreen> {
         type: MaterialType.transparency,
         child: Theme(
           data: Theme.of(context)
-              .copyWith(primaryColor: Color.fromRGBO(105, 105, 105, 1)),
+              .copyWith(primaryColor: Color.fromRGBO(192,192,192, 1)),
           child: Builder(
             builder: (context) => Container(
               color: Colors.white,

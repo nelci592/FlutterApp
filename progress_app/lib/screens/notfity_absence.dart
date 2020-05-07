@@ -20,6 +20,7 @@ class NotifyAbsence extends StatefulWidget {
 class _NotifyAbsenceState extends State<NotifyAbsence> {
   DateTime _startDate = DateTime.now();
   DateTime _endDate = DateTime.now().add(Duration(days: 1));
+  String _dropDownValue;
 
   void notify(startDate, endDate, spot) {
     const url = 'https://testdb-83df0.firebaseio.com/dates.json';
@@ -53,12 +54,13 @@ class _NotifyAbsenceState extends State<NotifyAbsence> {
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
+
     return Material(
       type: MaterialType.transparency,
       child: Theme(
           data: Theme.of(context).copyWith(
+            //  primaryColor: Colors.grey,
               buttonTheme: ButtonThemeData(
-                  highlightColor: Colors.green,
                   buttonColor: Colors.green,
                   colorScheme: Theme.of(context).colorScheme.copyWith(
                         primary: green,
@@ -74,6 +76,7 @@ class _NotifyAbsenceState extends State<NotifyAbsence> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Container(
+
                           padding: EdgeInsets.fromLTRB(
                               0, deviceSize.height * 0.2, 0, 0),
                           child: Text("Absence dates",
@@ -83,7 +86,9 @@ class _NotifyAbsenceState extends State<NotifyAbsence> {
                                 fontSize: 30,
                               )),
                         ),
+
                         Container(
+                            width: deviceSize.width * 0.6,
                           padding: EdgeInsets.fromLTRB(
                               0, deviceSize.height * 0.1, 0, 0),
                           child: Text(
@@ -95,6 +100,7 @@ class _NotifyAbsenceState extends State<NotifyAbsence> {
                               )),
                         ),
                         Container(
+                            width: deviceSize.width * 0.6,
                           child: Text(
                               "End Date: ${DateFormat('dd/MM/yyyy').format(_endDate).toString()}",
                               textAlign: TextAlign.left,
@@ -104,10 +110,39 @@ class _NotifyAbsenceState extends State<NotifyAbsence> {
                               )),
                         ),
                         Container(
+                            width: deviceSize.width * 0.6,
+                            // height: deviceSize.height * 0.1,
+                            child: DropdownButton(
+                              hint: _dropDownValue == null
+                                  ? Text('Select parking spot')
+                                  : Text(
+                                      _dropDownValue,
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                              isExpanded: true,
+                              iconSize: 30.0,
+                              style: TextStyle(color: Colors.black),
+                              items: ['1', '2', '3','4', '5', '6','7', '8', '9'].map(
+                                (val) {
+                                  return DropdownMenuItem<String>(
+                                    value: val,
+                                    child: Text(val),
+                                  );
+                                },
+                              ).toList(),
+                              onChanged: (val) {
+                                setState(
+                                  () {
+                                    _dropDownValue = val;
+                                  },
+                                );
+                              },
+                            )),
+                        Container(
                           width: deviceSize.width * 0.9,
                           padding: EdgeInsets.fromLTRB(
                               0,
-                              deviceSize.height * 0.32,
+                              deviceSize.height * 0.25,
                               0,
                               deviceSize.height * 0.03),
                           child: Container(
@@ -153,7 +188,7 @@ class _NotifyAbsenceState extends State<NotifyAbsence> {
                           child: RaisedButton(
                             onPressed: () {
                               notify(_startDate.toString(), _endDate.toString(),
-                                  2);
+                                   _dropDownValue);
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
