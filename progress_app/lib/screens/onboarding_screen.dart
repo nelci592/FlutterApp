@@ -197,13 +197,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       ),
       bottomSheet: _currentPage == _numPages - 1
           ? Container(
-              height: deviceSize.height * 0.08,
+            color: Colors.white,
+              height: deviceSize.height * 0.12,
               width: deviceSize.width,
               padding: EdgeInsets.fromLTRB(
                   deviceSize.width * 0.1,
-                  deviceSize.height * 0.01,
+                  deviceSize.height * 0.025,
                   deviceSize.width * 0.1,
-                  deviceSize.height * 0.01),
+                  deviceSize.height * 0.03
+                  ),
               child: RaisedButton(
                 onPressed: () {
                   // Navigator.push(

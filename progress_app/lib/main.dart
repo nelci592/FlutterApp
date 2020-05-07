@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:progress_app/screens/notfity_absence.dart';
+import 'package:progress_app/screens/onboarding_screen.dart';
 import 'package:progress_app/screens/splash.dart';
 import 'package:provider/provider.dart';
 import './providers/auth.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
                  primaryColor: Colors.white,
                  accentColor: Colors.green,
               ),
-              home: SplashScreen(),
+              home: OnboardingScreen(),
               //home: auth.isAuth ? OverviewScreen() : AuthScreen(),
               routes: {
                 OverviewScreen.routeName: (ctx) => OverviewScreen(),
