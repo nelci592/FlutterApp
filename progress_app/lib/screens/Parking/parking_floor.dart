@@ -4,14 +4,30 @@ import 'package:progress_app/models/parking_floor_state.dart';
 class ParkingFloor extends StatefulWidget {
   final ParkingFloorState status;
   final String floorName;
-
-  ParkingFloor({Key key, this.status, this.floorName}) : super(key: key);
+  final int numberAvailble;
+  ParkingFloor({Key key, this.status, this.floorName, this.numberAvailble})
+      : super(key: key);
 
   @override
   _ParkingFloorState createState() => _ParkingFloorState();
 }
 
 class _ParkingFloorState extends State<ParkingFloor> {
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   setStatus();
+  // }
+
+  // ParkingFloorState setStatus() {
+  //   if (widget.numberAvailble == 10)
+  //     widget.status = ParkingFloorState.available;
+  //   else if (widget.numberAvailble <= 6)
+  //     widget.status = ParkingFloorState.almostFull;
+  //   else if (widget.numberAvailble >= 6) widget.status = ParkingFloorState.full;
+  //   return widget.status;
+  // }
+
   LinearGradient getGradient() {
     if (widget.status == ParkingFloorState.available) {
       return LinearGradient(
@@ -84,7 +100,7 @@ class _ParkingFloorState extends State<ParkingFloor> {
                   padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child: new Text("7 available",
+                    child: new Text(widget.numberAvailble.toString() + " available",
                         style: TextStyle(
                             color: Color.fromRGBO(50, 50, 50, 1),
                             fontSize: 14)),

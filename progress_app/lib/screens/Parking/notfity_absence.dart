@@ -54,7 +54,8 @@ class _NotifyAbsenceState extends State<NotifyAbsence> {
       'spotNumber': number,
       'startDate': _startDate,
       'endDate':_endDate,
-      'emailOfOwner' : email
+      'emailOfOwner' : email,
+      'state' : "available"
     });
 
      setState(() {

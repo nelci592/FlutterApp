@@ -13,6 +13,7 @@ class _AvailableSpotsState extends State<AvailableSpots> {
         body: StreamBuilder(
             stream: Firestore.instance
                 .collection('/absences')
+               // .where('state', isEqualTo: "available")
                 .orderBy("spotNumber")
                 .snapshots(),
             builder: (ctx, streamSnapshot) {
@@ -27,23 +28,15 @@ class _AvailableSpotsState extends State<AvailableSpots> {
                     DateTime today = new DateTime(now.year, now.month, now.day);
                     DateTime startDate = documents[index]['startDate'].toDate();
                     DateTime endDate = documents[index]['endDate'].toDate();
+                    String state = documents[index]['state'];
 
                     int difference = today.difference(startDate).inDays;
                     int difference1 = endDate.difference(today).inDays;
 
-                    if (difference >= 0 && difference1 >= 0)
+                    if (difference >= 0 && difference1 >= 0 && state== "available")
                       return Card(
                         child: ListTile(
                           leading:
-                              //      Row(children: <Widget>[
-                              //   Text((documents[index]['spotNumber']).toString(),
-                              //       style: TextStyle(
-                              //         fontWeight: FontWeight.bold,
-                              //         fontSize: 15,
-                              //       )),
-                              //   Text(documents[index]['nameOfOwner'],
-                              //       style: TextStyle(fontSize: 15)),
-                              // ])
                               Text(
                             (documents[index]['spotNumber']).toString() +
                                 "        " +

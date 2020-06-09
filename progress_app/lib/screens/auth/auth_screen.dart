@@ -69,15 +69,16 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AuthForm(
-        _submitAuthForm,
-        _isLoading,
+      body: SingleChildScrollView(
+        physics: NeverScrollableScrollPhysics(),
+        child: AuthForm(
+          _submitAuthForm,
+          _isLoading,
+        ),
       ),
     );
   }
 }
-
-
 
 // import 'package:flutter/material.dart';
 // import 'package:provider/provider.dart';
