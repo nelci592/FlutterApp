@@ -30,13 +30,14 @@ class _AuthFormState extends State<AuthForm> {
 
     if (isValid) {
       _formKey.currentState.save();
-      widget.submitFn(_userEmail.trim(), _userPassword.trim(), _isLogin, context);
+      widget.submitFn(
+          _userEmail.trim(), _userPassword.trim(), _isLogin, context);
     }
   }
 
   var _isLoading = false;
-  final _passwordController = TextEditingController();
-
+  final TextEditingController _pass = TextEditingController();
+  final TextEditingController _confirmPass = TextEditingController();
   // void _showErrorDialog(String message) {
   //   showDialog(
   //     context: context,
@@ -91,7 +92,7 @@ class _AuthFormState extends State<AuthForm> {
                                 SizedBox(
                                   width: double.infinity,
                                   child: Container(
-                                    child: Text(  _isLogin ? 'Login' : 'Sign up',
+                                    child: Text(_isLogin ? 'Login' : 'Sign up',
                                         //   _authMode == AuthMode.Login ? 'Log in' : 'Sign up',
                                         textAlign: TextAlign.left,
                                         style: TextStyle(
@@ -119,6 +120,7 @@ class _AuthFormState extends State<AuthForm> {
                                 ),
                                 TextFormField(
                                   key: ValueKey('password'),
+                                  controller: _pass,
                                   validator: (value) {
                                     if (value.isEmpty || value.length < 7) {
                                       return 'Password must be at least 7 characters long.';
@@ -134,21 +136,19 @@ class _AuthFormState extends State<AuthForm> {
                                 ),
                                 if (!_isLogin)
                                   TextFormField(
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                    ),
+                                    key: ValueKey('password'),
+                                    controller: _confirmPass,
+                                    validator: (val) {
+                                      if (val.isEmpty) return 'Empty';
+                                      if (val != _pass.text) return 'Not Match';
+                                      return null;
+                                    },
                                     decoration: InputDecoration(
-                                        labelText: 'Confirm Password'),
+                                        labelText: 'Confirm password'),
                                     obscureText: true,
-                                    validator: !_isLogin
-                                        ? (value) {
-                                            if (value !=
-                                                _passwordController.text) {
-                                              return 'Passwords do not match!';
-                                            }
-                                            return null;
-                                          }
-                                        : null,
+                                    onSaved: (value) {
+                                      _userPassword = value;
+                                    },
                                   ),
                                 SizedBox(
                                   height: 20,

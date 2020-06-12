@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../widgets/drawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class LessonsList extends StatefulWidget {

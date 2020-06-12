@@ -41,9 +41,8 @@ class _FirstFloorState extends State<FirstFloor> {
       return isParkingSpaceOwner;
     });
 
-    var resultOfAbsence = await Firestore.instance
-        .collection('/absences')
-        .getDocuments();
+    var resultOfAbsence =
+        await Firestore.instance.collection('/absences').getDocuments();
 
     setState(() {
       resultOfAbsence.documents.forEach((res) {
@@ -55,8 +54,7 @@ class _FirstFloorState extends State<FirstFloor> {
     });
   }
 
-  
-  Widget buildViewByUserType() {
+  Widget buildViewByUserType() {      
     if (isParkingSpaceOwner) {
       if (isSpaceShared) {
         return UserAbsence();
@@ -85,14 +83,11 @@ class _FirstFloorState extends State<FirstFloor> {
             ),
           ),
         ),
-        Container(
-            width: 690,
-            height: 220,
-            child: buildViewByUserType()
+        Container(width: 690, height: 220, child: AvailableSpots()
             // (isParkingSpaceOwner)
             //     ? (isSpaceShared ? UserAbsence() : NotifyAbsence())
             //     : AvailableSpots()
-                )
+            )
       ],
     );
   }

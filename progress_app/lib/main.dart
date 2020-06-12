@@ -20,7 +20,9 @@ class MyApp extends StatelessWidget {
           primaryColor: Colors.white,
           accentColor: Colors.green,
         ),
-        home: Scaffold(
+        home:
+        // AuthScreen()
+        Scaffold(
             body: StreamBuilder(
                 stream: FirebaseAuth.instance.onAuthStateChanged,
                 builder: (ctx, userSnapshot) {
@@ -29,6 +31,7 @@ class MyApp extends StatelessWidget {
                   }
                   return AuthScreen();
                 }),
-  ));
+  )
+  );
   }
 }

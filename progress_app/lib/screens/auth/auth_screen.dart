@@ -16,6 +16,7 @@ class _AuthScreenState extends State<AuthScreen> {
   void _submitAuthForm(
     String email,
     String password,
+    //String username,
     bool isLogin,
     BuildContext ctx,
   ) async {
@@ -35,6 +36,9 @@ class _AuthScreenState extends State<AuthScreen> {
           email: email,
           password: password,
         );
+        setState(() {
+          isLogin = true;
+        });
         await Firestore.instance
             .collection('users')
             .document(authResult.user.uid)

@@ -11,7 +11,6 @@ class UserAbsence extends StatefulWidget {
 
 class _UserAbsenceState extends State<UserAbsence> {
   FirebaseUser currentUser;
-  FirebaseAuth _auth;
   String email;
   DateTime startDate;
   DateTime endDate;
@@ -19,7 +18,6 @@ class _UserAbsenceState extends State<UserAbsence> {
   @override
   void initState() {
     super.initState();
-    _auth = FirebaseAuth.instance;
     _getUserData();
   }
 

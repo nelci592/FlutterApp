@@ -1,11 +1,14 @@
 import 'dart:core';
 import 'package:flutter/material.dart';
-import 'package:progress_app/models/parking_floor_state.dart';
-import 'package:progress_app/models/parking_space.dart';
-import 'package:progress_app/screens/Parking/parking_floor.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import './first_floor_stuff.dart';
 import '../widgets/drawer.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import '../Parking/floors/first_floor.dart';
+import '../Parking/floors/second_floor.dart';
+import '../Parking/floors/third_floor.dart';
+// import 'package:progress_app/models/parking_floor_state.dart';
+// import 'package:progress_app/models/parking_space.dart';
+// import 'package:progress_app/screens/Parking/parking_floor.dart';
 
 class ParkingView extends StatefulWidget {
   @override
@@ -13,42 +16,34 @@ class ParkingView extends StatefulWidget {
 }
 
 class _ParkingViewState extends State<ParkingView> {
-  int numberFirstFloor=0;
-  int numberSecondFloor=0;
-  int numberThirdFloor=0;
-
+  int numberFirstFloor = 0;
+  int numberSecondFloor = 0;
+  int numberThirdFloor = 0;
+  Timestamp todayTimeStamp = Timestamp.fromDate(DateTime.now());
   String num;
 
   @override
   void initState() {
     super.initState();
-  //  _getNumber1();
-  _getNumber2();
- _getNumber3();
+    _deleteExpiredAbsences();
   }
-  // _getNumber1() async {
-  //  Firestore.instance.collection("first floor").where("state", isEqualTo: "available").getDocuments().then((querySnapshot) {
-  // querySnapshot.documents.forEach((result) {
-  //   numberFirstFloor++;
-  //   });
-  // });}
-final firestoreInstance = Firestore.instance;
 
-    _getNumber2() async {
-   firestoreInstance.collection("second floor").where("state", isEqualTo: "available").getDocuments().then((querySnapshot) {
-  querySnapshot.documents.forEach((result) {
-    numberSecondFloor++;
+  _deleteExpiredAbsences() async {
+    Firestore.instance
+        .collection("absences")
+        .where("endDate", isLessThan: todayTimeStamp)
+        .getDocuments()
+        .then((querySnapshot) {
+      querySnapshot.documents.forEach((result) {
+        Firestore.instance
+            .collection("absences")
+            .document(result.documentID)
+            .delete()
+            .then((_) {});
+      });
     });
-  });}
+  }
 
-    _getNumber3() async {
-  firestoreInstance.collection("third floor").where("state", isEqualTo: "available").getDocuments().then((querySnapshot) {
-  querySnapshot.documents.forEach((result) {
-    numberThirdFloor++;
-    });
-  });}
-
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,32 +89,29 @@ final firestoreInstance = Firestore.instance;
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
-                  child: ParkingFloor(
-                    status: ParkingFloorState.full,
-                    floorName: "P1",
-                    numberAvailble: 0,
-                  ),
-                ),
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
+                    child: Container(
+                      width: 400,
+                      height: 65,
+                      child: FirstFloorInfo(),
+                    )),
+                Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
+                    child: Container(
+                      width: 400,
+                      height: 65,
+                      child: SecondFloorInfo(),
+                    )),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
-                  child: ParkingFloor(
-                    status: ParkingFloorState.full,
-                    floorName: "P2",
-                    numberAvailble: numberSecondFloor,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
-                  child: ParkingFloor(
-                    status: ParkingFloorState.full,
-                    floorName: "P3",
-                    numberAvailble: numberThirdFloor,
-                  ),
+                  child: Container(
+                      width: 400, height: 65, child: ThirdFloorInfo()),
                 ),
                 Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                    child: FirstFloor()),
+                    child: Container(
+                      color:Colors.yellow,
+                      child: FirstFloor())),
               ],
             ),
           ),

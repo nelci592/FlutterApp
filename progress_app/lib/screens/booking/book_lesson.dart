@@ -14,7 +14,6 @@ class BookLesson extends StatefulWidget {
 
 class _BookLessonState extends State<BookLesson> {
   var nextMonday;
-  String nextWednesday;
   String dateOfNextClass;
   bool isJoining = false;
   bool isFull = false;
@@ -55,8 +54,6 @@ class _BookLessonState extends State<BookLesson> {
       });
       return isJoining;
     });
-
-    print(numberOfPeople);
 
     setState(() {
       (numberOfPeople < 5) ? isFull = false : isFull = true;
@@ -119,7 +116,7 @@ class _BookLessonState extends State<BookLesson> {
               height: 150,
               child: SvgPicture.asset(
                 'assets/images/dancing.svg',
-                color: Colors.grey,
+                color: Color.fromRGBO(111, 198, 25, 1),
               ),
             ),
             Padding(
@@ -134,7 +131,7 @@ class _BookLessonState extends State<BookLesson> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 20.0),
+              padding: const EdgeInsets.only(top: 30.0),
               child: Text(
                   "The next lesson is on " +
                       " ${DateFormat('dd/MM/yyyy').format(nextMonday).toString()}",
