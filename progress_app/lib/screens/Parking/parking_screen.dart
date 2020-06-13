@@ -110,7 +110,6 @@ class _ParkingViewState extends State<ParkingView> {
                 Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                     child: Container(
-                      color:Colors.yellow,
                       child: FirstFloor())),
               ],
             ),

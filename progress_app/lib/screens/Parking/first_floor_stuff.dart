@@ -54,7 +54,7 @@ class _FirstFloorState extends State<FirstFloor> {
     });
   }
 
-  Widget buildViewByUserType() {      
+  Widget buildViewByUserType() {
     if (isParkingSpaceOwner) {
       if (isSpaceShared) {
         return UserAbsence();
@@ -83,11 +83,13 @@ class _FirstFloorState extends State<FirstFloor> {
             ),
           ),
         ),
-        Container(width: 690, height: 220, child: AvailableSpots()
-            // (isParkingSpaceOwner)
-            //     ? (isSpaceShared ? UserAbsence() : NotifyAbsence())
-            //     : AvailableSpots()
-            )
+        Container(
+            width: 690,
+            height: 220,
+            color: Colors.pink,
+            child: (isParkingSpaceOwner)
+                ? (isSpaceShared ? UserAbsence() : NotifyAbsence())
+                : AvailableSpots())
       ],
     );
   }
