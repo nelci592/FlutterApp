@@ -17,8 +17,10 @@ class _AvailableSpotsState extends State<AvailableSpots> {
                  .orderBy("spotNumber")
                 .snapshots(),
             builder:
-                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              final documents = snapshot.data.documents;
+             (ctx, streamSnapshot) { 
+               final documents = streamSnapshot.data.documents;
+              //   (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              // final documents = snapshot.data.documents;
               return ListView.builder(
                   itemExtent: 60,
                   itemCount: documents.length,
@@ -28,8 +30,8 @@ class _AvailableSpotsState extends State<AvailableSpots> {
                     DateTime startDate = documents[index]['startDate'].toDate();
                     DateTime endDate = documents[index]['endDate'].toDate();
 
-                    int difference = today.difference(startDate).inDays;
-                    int difference1 = endDate.difference(today).inDays;
+                    int difference = today.difference(startDate).inDays.abs();
+                    int difference1 = endDate.difference(today).inDays.abs();
 
                     if (difference >= 0 && difference1 >= 0)
                       return Card(

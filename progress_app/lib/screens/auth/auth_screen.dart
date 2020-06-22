@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import './auth_form.dart';
+import '../../screens/onboarding_screen.dart';
+import '../Parking/parking_screen.dart';
 
 class AuthScreen extends StatefulWidget {
   @override
@@ -31,6 +33,10 @@ class _AuthScreenState extends State<AuthScreen> {
           email: email,
           password: password,
         );
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (BuildContext context) => OnboardingScreen()));
       } else {
         authResult = await _auth.createUserWithEmailAndPassword(
           email: email,

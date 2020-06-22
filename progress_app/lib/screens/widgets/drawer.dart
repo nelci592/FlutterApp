@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:progress_app/screens/auth/auth_screen.dart';
 import '../Parking/parking_screen.dart';
 import '../booking/book_lesson.dart';
 import '../booking/book_facility.dart';
-
 
 class AppDrawer extends StatelessWidget {
   @override
@@ -39,10 +39,10 @@ class AppDrawer extends StatelessWidget {
                 height: 24,
               ),
               onTap: () {
-              Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => ParkingView()));
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => ParkingView()));
               },
             ),
             ListTile(
@@ -54,9 +54,9 @@ class AppDrawer extends StatelessWidget {
               ),
               onTap: () {
                 Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => BookFacility()));
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => BookFacility()));
               },
             ),
             ListTile(

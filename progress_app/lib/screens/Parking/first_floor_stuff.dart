@@ -86,7 +86,6 @@ class _FirstFloorState extends State<FirstFloor> {
         Container(
             width: 690,
             height: 220,
-            color: Colors.pink,
             child: (isParkingSpaceOwner)
                 ? (isSpaceShared ? UserAbsence() : NotifyAbsence())
                 : AvailableSpots())

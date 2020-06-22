@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:progress_app/screens/Parking/parking_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
   @override
@@ -49,7 +50,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 Container(
                   alignment: Alignment.centerRight,
                   child: FlatButton(
-                    onPressed: () => print('Skip'),
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  ParkingView()));
+                    },
                     child: Text(
                       'Skip',
                       style: TextStyle(
@@ -197,22 +204,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       ),
       bottomSheet: _currentPage == _numPages - 1
           ? Container(
-            color: Colors.white,
+              color: Colors.white,
               height: deviceSize.height * 0.12,
               width: deviceSize.width,
               padding: EdgeInsets.fromLTRB(
                   deviceSize.width * 0.1,
                   deviceSize.height * 0.025,
                   deviceSize.width * 0.1,
-                  deviceSize.height * 0.03
-                  ),
+                  deviceSize.height * 0.03),
               child: RaisedButton(
                 onPressed: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //       builder: (context) => ParkingView()),
-                  // );
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => ParkingView()));
                 },
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0)),

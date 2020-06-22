@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:progress_app/screens/splash.dart';
+import './screens/onboarding_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:progress_app/screens/Parking/parking_screen.dart';
 import './screens/auth/auth_screen.dart';
@@ -20,18 +22,18 @@ class MyApp extends StatelessWidget {
           primaryColor: Colors.white,
           accentColor: Colors.green,
         ),
-        home:
+        home: SplashScreen(),
         // AuthScreen()
-        Scaffold(
-            body: StreamBuilder(
-                stream: FirebaseAuth.instance.onAuthStateChanged,
-                builder: (ctx, userSnapshot) {
-                  if (userSnapshot.hasData) {
-                    return ParkingView();
-                  }
-                  return AuthScreen();
-                }),
-  )
+        // Scaffold(
+        //     body: StreamBuilder(
+        //         stream: FirebaseAuth.instance.onAuthStateChanged,
+        //         builder: (ctx, userSnapshot) {
+        //           if (userSnapshot.hasData) {
+        //             return ParkingView();
+        //           }
+        //           return AuthScreen();
+        //         }),
   );
+  
   }
 }
