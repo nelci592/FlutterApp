@@ -1,4 +1,0 @@
-enum SharedSpaceState {
-  available,
-  occupied
-}
